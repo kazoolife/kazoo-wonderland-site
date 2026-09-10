@@ -1,0 +1,39 @@
+backend:
+  name: github
+  repo: kazoolife/kazoo-wonderland
+  branch: main
+
+publish_mode: editorial_workflow
+media_folder: assets/uploads
+public_folder: /assets/uploads
+
+collections:
+  - name: articles
+    label: 記事 / Articles
+    label_singular: 記事
+    folder: content/articles
+    create: true
+    extension: json
+    format: json
+    slug: "{{slug}}"
+    summary: "{{title_ja}} — {{status}}"
+    fields:
+      - { label: URL名（半角英数）, name: slug, widget: string, pattern: ['^[a-z0-9-]+$', '半角小文字・数字・ハイフンのみ'] }
+      - { label: 公開状態, name: status, widget: select, options: [draft, published], default: draft }
+      - { label: 公開日, name: date, widget: datetime, format: YYYY-MM-DD, date_format: YYYY-MM-DD, time_format: false }
+      - { label: 更新日, name: updated, widget: datetime, format: YYYY-MM-DD, date_format: YYYY-MM-DD, time_format: false }
+      - { label: カテゴリー, name: category, widget: select, options: ['THE KAZOO HISTORY', 'KAZOO SOUND', 'KAZOO LIVE', 'KAZOO COLLECTION', 'KAZOO × AI LAB', 'KAZOO LIFE'] }
+      - { label: 根拠区分, name: evidence, widget: select, options: ['確認済み', '伝承', '実機検証', '研究途上', '推定'] }
+      - { label: 言語, name: language, widget: select, options: ['ja', 'ja+en'], default: ja }
+      - { label: 注目記事, name: featured, widget: boolean, default: false }
+      - { label: 旧URL, name: legacy_url, widget: string, required: false }
+      - { label: 日本語タイトル, name: title_ja, widget: string }
+      - { label: English title, name: title_en, widget: string, required: false }
+      - { label: 日本語要約, name: summary_ja, widget: text }
+      - { label: English summary, name: summary_en, widget: text, required: false }
+      - { label: 表題画像, name: cover, widget: image, required: false, default: /assets/hero-kazoo-wonderland.webp }
+      - { label: 表題画像alt, name: cover_alt, widget: string, required: false }
+      - { label: 日本語本文, name: body_ja, widget: markdown }
+      - { label: English body, name: body_en, widget: markdown, required: false }
+      - { label: Sources / References, name: sources, widget: list, required: false, field: { label: Source, name: source, widget: string } }
+      - { label: YouTube / Media URL, name: media_url, widget: string, required: false }
