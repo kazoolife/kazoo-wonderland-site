@@ -2,6 +2,8 @@ backend:
   name: github
   repo: kazoolife/kazoo-wonderland
   branch: main
+  base_url: https://kazoo-wonderland-auth.netlify.app
+  auth_endpoint: auth
 
 publish_mode: editorial_workflow
 media_folder: assets/uploads
